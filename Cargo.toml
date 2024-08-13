@@ -1,0 +1,13 @@
+[package]
+name = "kafkaconsumer_to_postgres"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+simple_logger = "5.0.0"
+log = "0.4.22"
+uuid = { version = "1.10.0", features = ["v7","fast-rng"] }
+rdkafka = { version = "0.36.2", features = ["cmake-build"] }
+tokio = {version = "1.39.2", features = ["full"]}
+chrono = "0.4.38"
+sqlx = {version = "0.8.0", features = ["postgres","runtime-tokio-rustls"]}
