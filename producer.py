@@ -6,10 +6,10 @@ producer = KafkaProducer(bootstrap_servers=['127.0.0.1:9092'], api_version=(0, 1
 start=0
 end=300
 while start < end:
-    producer.send('hubtel.sms.send',value =
+    producer.send('rusthust_send',value =
     {
         "Value":start
-    },headers=[("Content-Type",b'application/json')]
+    }
     )
     start = start + 1
     print("produced")
