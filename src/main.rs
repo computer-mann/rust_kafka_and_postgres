@@ -1,6 +1,7 @@
 mod consumer;
 mod producer;
 mod using_postgres;
+mod redis_caching;
 
 use std::error::Error;
 use std::fmt::format;
@@ -31,16 +32,7 @@ async fn main()->Result<(), Box<dyn Error>> {
     }));
     // scheduler.add(Job::new("1/10 * * * * *".parse().unwrap(),|| println!("every 9 seconds")));
     // scheduler.add(Job::new("1/10 * * * * *".parse().unwrap(),|| println!("every 11 seconds")));
-    let con_string=std::env::var("DB_CONNECTION").unwrap();
 
-    let conn=sqlx::postgres::PgPool::connect(&con_string).await?;
-    log::info!("connection successful");
-    let all_customers=sqlx::query(r#"Select * from public."Customers" "#)
-        .fetch_all(&conn).await?;
-    all_customers.iter().for_each(|x|{
-        let username:String=x.get("Username");
-        println!("{:?}",username)
-    });
     tokio::spawn(async {
         create_consumer().await
     });
