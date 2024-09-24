@@ -3,6 +3,7 @@ mod producer;
 mod using_postgres;
 mod redis_caching;
 mod added_background_reccuring_jobs;
+mod boyer_moore_maximum_voting_algoritm;
 
 use rdkafka::consumer::Consumer;
 use rdkafka::message::Headers;
